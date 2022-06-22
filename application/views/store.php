@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Business Casual - Start Bootstrap Theme</title>
+        <title>Roetin Coffee | store</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -15,78 +15,42 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 		<link href="css/custom.css" rel="stylesheet" />
+		<style>
+			
+		</style>
     </head>
     <body>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
-				<span class="site-heading-upper text-primary mb-3">Coffee, Relax, Talk, Productive</span>
-                <span class="site-heading-lower">Roetin Coffee</span>
+                <span class="site-heading-lower">Roetin Coffee Shop</span>
             </h1>
         </header>
-        <!-- Navigation-->
-        <!-- <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="<?= base_url() ?>home">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mx-auto">
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="<?= base_url() ?>home">Home</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="<?= base_url() ?>about">About</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="<?= base_url() ?>products">Products</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="<?= base_url() ?>store">Store</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav> -->
-        <section class="page-section cta">
+        <section class="page-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-9 mx-auto">
-                        <div class="cta-inner bg-faded text-center rounded">
-                            <h2 class="section-heading mb-4">
-                                <span class="section-heading-upper">Come On In</span>
-                                <span class="section-heading-lower">We're Open</span>
-                            </h2>
-                            <p>
-								Every day is a good time for coffee
-								<br>
-								16.00-00.00 (during Ramadhan)
-							</p>
-                            <p class="address mb-5">
-                                <em>
-                                    <strong>Trimulyo I, Kepek, Wonosari</strong>
-                                    <br />
-                                    Gunung Kidul, Special Region of Yogyakarta
-                                </em>
-                            </p>
-                            <p class="mb-0">
-                                <small><em>Call Anytime</em></small>
-                                <br />
-                                0857-1241-5675
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="page-section about-heading">
-            <div class="container">
-                <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="assets/img/about.jpg" alt="..." />
-                <div class="about-heading-content">
-                    <div class="row">
-                        <div class="col-xl-9 col-lg-10 mx-auto">
-                            <div class="bg-faded rounded p-5">
-                                <h2 class="section-heading mb-4">
-                                    <span class="section-heading-upper">Strong Coffee, Strong Roots</span>
-                                    <span class="section-heading-lower">About Our Cafe</span>
-                                </h2>
-                                <p>Founded in 2017 by Bayu Aditya, our establishment has been serving up rich coffee sourced from artisan farmers in various regions of Indonesia. We are dedicated to travelling the world, finding the best coffee, and bringing back to you here in our cafe.</p>
-                                <p class="mb-0">
-                                    We guarantee that you will fall in
-                                    <em>lust</em>
-                                    with our decadent blends the moment you walk inside until you finish your last sip. Join us for your daily routine, an outing with friends, or simply just to enjoy some alone time.
-                                </p>
-                            </div>
+                    <div class="col-xl-12 mx-auto">
+                        <div class="bg-faded text-center rounded">
+							<div class="d-inline-flex p-2 bd-highlight">
+								<?php foreach ($produk as $pdk) : ?>
+
+								<div class="card m-4" style="width: 18rem;">
+									<img src="assets/img/<?= $pdk->gambar ?>" class="card-img-top" alt="product-04">
+									<div class="card-body">
+										<h5 class="card-title"><?= $pdk->nama ?></h5>
+										<small class="card-text"><?= $pdk->keterangan ?></small>
+										<br>
+										<span class="badge rounded-pill bg-success mt-2">Rp <?= $pdk->harga ?></span>
+										<br>
+										<div class="btn-grup mt-2">
+											<a href="#" class="btn btn-sm btn-primary">Tambah ke Keranjang</a>
+											<a href="#" class="btn btn-sm btn-success">Detail</a>
+										</div>
+									</div>
+								</div>
+
+								<?php endforeach; ?>
+
+							</div>
                         </div>
                     </div>
                 </div>

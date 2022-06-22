@@ -23,8 +23,9 @@ class Cafe extends CI_Controller {
 
 	public function store()
 	{
+		$data['produk'] = $this->model_produk->tampil_data()->result();
 		$this->load->view('nav');
-		$this->load->view('store');
+		$this->load->view('store', $data);
 	}
 
 	public function signup() {

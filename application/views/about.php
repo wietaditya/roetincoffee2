@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Business Casual - Start Bootstrap Theme</title>
+        <title>Roetin Coffee | about</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -38,13 +38,44 @@
                 </div>
             </div>
         </nav> -->
+        <section class="page-section cta">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 mx-auto">
+                        <div class="cta-inner bg-faded text-center rounded">
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-upper">Come On In</span>
+                                <span class="section-heading-lower">We're Open</span>
+                            </h2>
+                            <p>
+								Every day is a good time for coffee
+								<br>
+								16.00-00.00 (during Ramadhan)
+							</p>
+                            <p class="address mb-5">
+                                <em>
+                                    <strong>Trimulyo I, Kepek, Wonosari</strong>
+                                    <br />
+                                    Gunung Kidul, Special Region of Yogyakarta
+                                </em>
+                            </p>
+                            <p class="mb-0">
+                                <small><em>Call Anytime</em></small>
+                                <br />
+                                0857-1241-5675
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="page-section about-heading">
             <div class="container">
                 <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="assets/img/about.jpg" alt="..." />
                 <div class="about-heading-content">
                     <div class="row">
                         <div class="col-xl-9 col-lg-10 mx-auto">
-							<div class="bg-faded rounded p-5">
+                            <div class="bg-faded rounded p-5">
                                 <h2 class="section-heading mb-4">
                                     <span class="section-heading-upper">Strong Coffee, Strong Roots</span>
                                     <span class="section-heading-lower">About Our Cafe</span>
@@ -62,7 +93,7 @@
             </div>
         </section>
         <footer class="footer text-faded text-center py-5">
-            <div class="container"><p class="m-0 small">Copyright &copy; Roetin Coffee 2022</p></div>
+			<div class="container"><p class="m-0 small">Copyright &copy; Roetin Coffee 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
