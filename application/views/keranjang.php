@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Roetin Coffee | store</title>
+        <title>Roetin Coffee | keranjang</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -29,27 +29,41 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
-                        <div class="bg-faded text-center rounded">
-							<div class="d-inline-flex p-2 bd-highlight">
-								<?php foreach ($produk as $pdk) : ?>
-
-								<div class="card m-4" style="width: 18rem;">
-									<img src="assets/img/<?= $pdk->gambar ?>" class="card-img-top" alt="product-04">
-									<div class="card-body">
-										<h5 class="card-title"><?= $pdk->nama ?></h5>
-										<small class="card-text"><?= $pdk->keterangan ?></small>
-										<br>
-										<span class="badge rounded-pill bg-success mt-2">Rp <?= number_format($pdk->harga,0,',','.') ?></span>
-										<br>
-										<div class="btn-grup mt-2">
-											<a href="<?php echo base_url().'tambah_ke_keranjang/'.$pdk->id ?>" class="btn btn-sm btn-primary">Tambah ke Keranjang</a>
-											<a href="#" class="btn btn-sm btn-success">Detail</a>
-										</div>
-									</div>
-								</div>
-
-								<?php endforeach; ?>
-
+                        <div class="bg-faded text-center rounded p-2">
+							<h5>Daftar Keranjang</h5>
+							<table class="table table-bordered table-striped table-hover">
+								<thead class="text-center">
+									<tr>
+									<th scope="col">No</th>
+									<th scope="col">Nama</th>
+									<th scope="col">Jumlah</th>
+									<th scope="col">Harga</th>
+									<th scope="col">Sub-total</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+								<?php
+									$no = 1; 
+									$total = $this->cart->total();
+									foreach ($this->cart->contents() as $item) : ?>	
+									<tr>
+										<th scope="row"><?= $no++ ?></th>
+										<td><?= $item['name'] ?></td>
+										<td><?= $item['qty'] ?></td>
+										<td align="right">Rp <?= number_format($item['price'],0,',','.') ?></td>
+										<td align="right">Rp <?= number_format($item['subtotal'],0,',','.') ?></td>
+									</tr>
+									<?php endforeach; ?>
+									<tr>
+										<td colspan="4" align="right"></td>
+										<td align="right">Rp <?= number_format($total,0,',','.') ?></td>
+									</tr>
+								</tbody>
+							</table>
+							<div align="right">
+								<a href="<?php echo base_url('hapus_keranjang')?>" class="btn btn-sm btn-danger">Hapus Keranjang</a>
+								<a href="<?php echo base_url('store')?>" class="btn btn-sm btn-primary">Lanjutkan Belanja</a>
+								<a href="<?php echo base_url('pembayaran')?>" class="btn btn-sm btn-success">Pembayaran</a>
 							</div>
                         </div>
                     </div>

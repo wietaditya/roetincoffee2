@@ -77,4 +77,5 @@ class AdminController extends CI_Controller {
 		$this->model_produk->delete_data($where, 'tb_produk');
 		redirect('admin/admincontroller/data_produk');
 	}
+	
 }

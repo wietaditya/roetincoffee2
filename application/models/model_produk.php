@@ -24,4 +24,13 @@ class Model_produk extends CI_Model {
 		$this->db->delete($table);
 	}
 
+	public function find($id) {
+		$result = $this->db->where('id', $id)->limit(1)->get('tb_produk');
+		if($result->num_rows() > 0) {
+			return $result->row();
+		} else {
+			return array();
+		}
+	}
+
 }
