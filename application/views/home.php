@@ -17,7 +17,6 @@
         <link href="css/custom.css" rel="stylesheet" />
     </head>
     <body>
-	<a href="<?= base_url() ?>signup"><div class="open-button" onclick="openForm()">Go to online store</div></a>
 
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">

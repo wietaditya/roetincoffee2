@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Roetin Coffee - Edit Produk</title>
+    <title>Roetin Coffee - Data Invoice</title>
 
     <!-- Custom fonts for this template-->
 	<link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
@@ -52,14 +52,14 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item active">
+            <li class="nav-item">
 			<a class="nav-link" href="<?php echo base_url('admin/admincontroller/data_produk') ?>">
                     <i class="fas fa-fw fa-database"></i>
                     <span>Data Barang</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li class="nav-item active">
 			<a class="nav-link" href="<?php echo base_url('admin/admincontroller/invoices') ?>">
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Invoices</span></a>
@@ -93,8 +93,8 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                       <!-- Nav Item - User Information -->
+					   <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
@@ -120,45 +120,37 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-start justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data Produk</h1>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Data Invoice</h1>
                     </div>
 
-					<div class="row ml-1">
-						<?php foreach($produk as $pdk) : ?>
-							
-							<form method="post" action="<?php echo base_url().'admin/admincontroller/update' ?>">
-							<input type="hidden" name="id" value="<?php echo $pdk->id ?>">
-							<div class="form-group">
-								<label for="nama">Nama Produk</label>
-								<input type="text" name="nama" class="form-control" value="<?php echo $pdk->nama ?>">	
-							</div>
-							<div class="form-group">
-								<label for="keterangan">Keterangan</label>
-								<input type="text" name="keterangan" class="form-control" value="<?php echo $pdk->keterangan ?>">	
-							</div>
-							<div class="form-group">
-								<label for="kategori">Kategori</label>
-								<input type="text" name="kategori" class="form-control" value="<?php echo $pdk->kategori ?>">	
-							</div>
-							<div class="form-group">
-								<label for="harga">Harga</label>
-								<input type="text" name="harga" class="form-control" value="<?php echo $pdk->harga ?>">	
-							</div>
-							<div class="form-group">
-								<label for="stok">Stok</label>
-								<input type="text" name="stok" class="form-control" value="<?php echo $pdk->stok ?>">	
-							</div>
-							<!-- <div class="form-group">
-								<label for="gambar">Gambar</label><br>
-								<input type="file" name="gambar">	
-							</div> -->
+					<div class="row">
+						<table class="table table-bordered table-hover table-striped">
+							<tr>
+								<th>Id Invoice</th>
+								<th>Nama Pemesan</th>
+								<th>Alamat Pengiriman</th>
+								<th>Tanggal Pemesanan</th>
+								<th>Batas Pembayaran</th>
+								<th>Action</th>
+							</tr>
 
-							<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+							<?php
+							$no = 1;
+							foreach($invoices as $inv) : ?>
 
-							</form>
-
-						<?php endforeach; ?>
+							<tr>
+								<td><?= $inv->id ?></td>
+								<td><?= $inv->nama ?></td>
+								<td><?= $inv->alamat ?></td>
+								<td><?= $inv->tgl_pesan ?></td>
+								<td><?= $inv->batas_bayar ?></td>
+								<td>
+									<a href="<?php echo base_url().'admin/admincontroller/invoice_detail/'. $inv->id?>" class="btn btn-sm btn-primary">Detail</a>
+								</td>
+							</tr>
+							<?php endforeach; ?>
+						</table>
 					</div>
 
 				</div>
@@ -207,54 +199,6 @@
             </div>
         </div>
     </div>
-
-	<!-- Modal -->
-	
-	<!-- Modal -->
-	<div class="modal fade" id="tambah_produk" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body">
-			<form action="<?= base_url().'admin/admincontroller/add_produk' ?>" method="post" enctype="multipart/form-data">
-				<div class="form-group">
-					<label for="nama">Nama Produk</label>
-					<input type="text" name="nama" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="keterangan">Keterangan</label>
-					<input type="text" name="keterangan" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="kategori">Kategori</label>
-					<input type="text" name="kategori" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="harga">Harga</label>
-					<input type="text" name="harga" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="stok">Stok</label>
-					<input type="text" name="stok" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="gambar">Gambar</label><br>
-					<input type="file" name="gambar">	
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Simpan Produk</button>
-			</div>
-		</form>
-		</div>
-	</div>
-	</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url('assets/jquery/jquery.min.js') ?>"></script>

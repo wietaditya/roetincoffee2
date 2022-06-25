@@ -75,7 +75,7 @@
         <div class="container d-flex justify-content-center">
             <!-- Navbar Brand -->
             <a href="#" class="navbar-brand">
-                <img src="assets/img/roetin-logo.png" alt="logo" width="100">
+                <img src="<?= base_url() ?>assets/img/roetin-logo.png" alt="logo" width="100">
             </a>
         </div>
     </nav>
@@ -87,43 +87,23 @@
         <!-- For Demo Purpose -->
         <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
             <img src="https://bootstrapious.com/i/snippets/sn-registeration/illustration.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
-            <h3>Create a Roetin Account</h3>
+            <h3>Daftar Roetin Akun</h3>
         </div>
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-            <form action="#">
+            <form action="<?= base_url('auth/daftar') ?>" method="post">
                 <div class="row">
 
                     <!-- First Name -->
-                    <div class="input-group col-lg-6 mb-4">
+                    <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="firstName" type="text" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md">
+                        <input id="fullName" type="text" name="nama" placeholder="Nama Lengkap" class="form-control bg-white border-left-0 border-md">
                     </div>
-
-                    <!-- Last Name -->
-                    <div class="input-group col-lg-6 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-user text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="lastName" type="text" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md">
-                    </div>
-
-                    <!-- Email Address -->
-                    <!-- <div class="input-group col-lg-12 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-envelope text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
-                    </div> -->
 
                     <!-- Phone Number -->
                     <div class="input-group col-lg-12 mb-4">
@@ -132,7 +112,7 @@
                                 <i class="fa fa-phone-square text-muted"></i>
                             </span>
                         </div>
-                        <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control bg-white border-md border-left-0 pl-3">
+                        <input id="phoneNumber" type="tel" name="no_telp" placeholder="Nomor Telpon" class="form-control bg-white border-md border-left-0">
                     </div>
 
                     <!-- Password -->
@@ -152,19 +132,18 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                        <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Konfirmasi Password" class="form-control bg-white border-left-0 border-md" onkeyup="validatePass()">
                     </div>
 
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
-                        <a href="#" class="btn btn-primary btn-block py-2">
-                            <span class="font-weight-bold">Create your account</span>
-                        </a>
+                        <button type="submit" class="btn btn-primary btn-block py-2" onclick="validate()" id="buttonSignup">
+                            <span class="font-weight-bold">Daftar</span>
+						</button>
                     </div>
 
-                    <!-- Already Registered -->
-                    <div class="text-center w-100">
-                        <p class="text-muted font-weight-bold">Already Registered? <a href="#" class="text-primary ml-2">Login</a></p>
+                    <div class="text-center w-100 mt-3">
+                        <p class="text-muted font-weight-bold">Sudah punya akun? <a href="<?= base_url('auth/login') ?>" class="text-primary">Login disini</a></p>
                     </div>
 
                 </div>
@@ -188,6 +167,28 @@ $(function () {
         $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
     });
 });
+
+function validate() {
+	var nama = $('#fullName').val();
+	var no_telp = $('#phoneNumber').val();
+	var password1 = $('#password').val();
+	var password2 = $('#passwordConfirmation').val();
+
+	if (nama == '' || no_telp == '' || password1 == '' || password2 == '') {
+		alert("Semua form wajib diisi!");
+	}
+};
+
+function validatePass() {
+	var password1 = $('#password').val();
+	var password2 = $('#passwordConfirmation').val();
+
+	if (password1 != password2) {
+		$('#buttonSignup').attr('disabled','disabled')
+	} else {
+		$('#buttonSignup').removeAttr('disabled')
+	}
+}
 
 </script>
 </body>

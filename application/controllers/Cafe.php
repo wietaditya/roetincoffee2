@@ -29,16 +29,22 @@ class Cafe extends CI_Controller {
 	}
 
 	public function tambah_ke_keranjang($id) {
-		$produk = $this->model_produk->find($id);
-		$data = array(
-			'id'		=> $produk->id,
-			'qty'		=> 1,
-			'price'		=> $produk->harga,
-			'name'		=> $produk->nama
-		);
+		if($this->session->userdata('nama') == FALSE) {
+			redirect('auth/login');
+		} else {
 
-		$this->cart->insert($data);
-		redirect('store');
+
+			$produk = $this->model_produk->find($id);
+			$data = array(
+				'id'		=> $produk->id,
+				'qty'		=> 1,
+				'price'		=> $produk->harga,
+				'name'		=> $produk->nama
+			);
+
+			$this->cart->insert($data);
+			redirect('store');
+		}
 	}
 
 	public function keranjang() {
@@ -57,9 +63,20 @@ class Cafe extends CI_Controller {
 	}
 
 	public function proses_pesanan() {
-		$this->cart->destroy();
+		$is_processed = $this->model_invoice->index();
+		if ($is_processed) {
+			$this->cart->destroy();
+			$this->load->view('nav');
+			$this->load->view('proses_pesanan');
+		} else {
+			echo "Maaf, Pesanan Anda Gagal Diproses.";
+		}
+	}
+
+	public function detail_product($id) {
+		$data['produk'] = $this->model_produk->find($id);
 		$this->load->view('nav');
-		$this->load->view('proses_pesanan');
+		$this->load->view('detail_product', $data);
 	}
 
 	public function signup() {

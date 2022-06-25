@@ -1,6 +1,19 @@
 <?php
 
 class AdminController extends CI_Controller {
+
+	public function __construct() {
+		parent::__construct();
+
+		if ($this->session->userdata('role_id') != 1) {
+			$this->session->set_flashdata('pesan',
+			'<div class="alert alert-danger fade show" role="alert">
+				<strong>Anda belum login!
+			  </div>');
+			  redirect('auth/login');
+		}
+	}
+
 	public function dashboard() {
 		$this->load->view('admin/dashboard');
 	}
@@ -76,6 +89,19 @@ class AdminController extends CI_Controller {
 		$where = array('id' => $id);
 		$this->model_produk->delete_data($where, 'tb_produk');
 		redirect('admin/admincontroller/data_produk');
+	}
+
+	//Invoice
+	public function invoices() {
+		$data['invoices'] = $this->model_invoice->tampil_data();
+		$this->load->view('admin/data_invoice', $data);
+	}
+
+	public function invoice_detail($id_invoice) {
+		$data['invoice'] = $this->model_invoice->detail_invoice($id_invoice);
+		$data['pesanan'] = $this->model_invoice->detail_pesanan($id_invoice);
+		$this->load->view('admin/detail_invoice', $data);
+
 	}
 	
 }

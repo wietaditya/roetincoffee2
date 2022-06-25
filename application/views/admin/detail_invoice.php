@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Roetin Coffee - Edit Produk</title>
+    <title>Roetin Coffee - Detail Invoice</title>
 
     <!-- Custom fonts for this template-->
 	<link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
@@ -52,14 +52,14 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item active">
+            <li class="nav-item">
 			<a class="nav-link" href="<?php echo base_url('admin/admincontroller/data_produk') ?>">
                     <i class="fas fa-fw fa-database"></i>
                     <span>Data Barang</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li class="nav-item active">
 			<a class="nav-link" href="<?php echo base_url('admin/admincontroller/invoices') ?>">
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Invoices</span></a>
@@ -93,8 +93,8 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                       <!-- Nav Item - User Information -->
+					   <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
@@ -121,45 +121,42 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-start justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data Produk</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Detail Invoice <span class="badge rounded-pill bg-success">No. Invoice <?php echo $invoice->id  ?></span></h1>
                     </div>
 
-					<div class="row ml-1">
-						<?php foreach($produk as $pdk) : ?>
-							
-							<form method="post" action="<?php echo base_url().'admin/admincontroller/update' ?>">
-							<input type="hidden" name="id" value="<?php echo $pdk->id ?>">
-							<div class="form-group">
-								<label for="nama">Nama Produk</label>
-								<input type="text" name="nama" class="form-control" value="<?php echo $pdk->nama ?>">	
-							</div>
-							<div class="form-group">
-								<label for="keterangan">Keterangan</label>
-								<input type="text" name="keterangan" class="form-control" value="<?php echo $pdk->keterangan ?>">	
-							</div>
-							<div class="form-group">
-								<label for="kategori">Kategori</label>
-								<input type="text" name="kategori" class="form-control" value="<?php echo $pdk->kategori ?>">	
-							</div>
-							<div class="form-group">
-								<label for="harga">Harga</label>
-								<input type="text" name="harga" class="form-control" value="<?php echo $pdk->harga ?>">	
-							</div>
-							<div class="form-group">
-								<label for="stok">Stok</label>
-								<input type="text" name="stok" class="form-control" value="<?php echo $pdk->stok ?>">	
-							</div>
-							<!-- <div class="form-group">
-								<label for="gambar">Gambar</label><br>
-								<input type="file" name="gambar">	
-							</div> -->
+					<table class="table table-bordered table-hover table-striped">
+						<tr>
+							<th>Id Produk</th>
+							<th>Nama Produk</th>
+							<th>Jumlah Pesanan</th>
+							<th>Harga Satuan</th>
+							<th>Subtotal</th>
+						</tr>
 
-							<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+						<?php
+						$total = 0;
+						foreach ($pesanan as $psn) :
+							$subtotal = $psn->jumlah * $psn->harga;
+							$total += $subtotal;
+						
+						?>
 
-							</form>
+						<tr>
+							<td><?= $psn->id_pdk ?></td>
+							<td><?= $psn->nama_pdk ?></td>
+							<td><?= $psn->jumlah ?></td>
+							<td align="right">Rp <?= number_format($psn->harga,0,',','.') ?></td>
+							<td align="right">Rp <?= number_format($subtotal,0,',','.') ?></td>
+						</tr>
 
 						<?php endforeach; ?>
-					</div>
+
+						<tr>
+							<td colspan="4" align="right">Grand Total</td>
+							<td align="right">Rp <?= number_format($total,0,',','.') ?></td>
+						</tr>
+
+					</table>
 
 				</div>
                 <!-- /.container-fluid -->
@@ -207,8 +204,6 @@
             </div>
         </div>
     </div>
-
-	<!-- Modal -->
 	
 	<!-- Modal -->
 	<div class="modal fade" id="tambah_produk" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

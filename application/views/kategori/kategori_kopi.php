@@ -13,8 +13,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-		<link href="css/custom.css" rel="stylesheet" />
+        <link href="<?php echo base_url()?>css/styles.css" rel="stylesheet" />
+		<link href="<?php echo base_url()?>css/custom.css" rel="stylesheet" />
 		<style>
 			
 		</style>
@@ -34,7 +34,7 @@
 								<?php foreach ($produk as $pdk) : ?>
 								<div class="row">
 									<div class="card m-4 p-3" style="width: 18rem;">
-										<img src="assets/img/<?= $pdk->gambar ?>" class="card-img-top" alt="product-04">
+										<img src="<?php echo base_url()?>assets/img/<?= $pdk->gambar ?>" class="card-img-top" alt="product-04">
 										<div class="card-body">
 											<h5 class="card-title"><?= $pdk->nama ?></h5>
 											<small class="card-text"><?= $pdk->keterangan ?></small>
@@ -43,7 +43,7 @@
 											<br>
 											<div class="btn-grup mt-2">
 												<a href="<?php echo base_url().'tambah_ke_keranjang/'.$pdk->id ?>" class="btn btn-sm btn-primary">Tambah ke Keranjang</a>
-												<a href="<?php echo base_url().'detail_product/'.$pdk->id ?>" class="btn btn-sm btn-success">Detail</a>
+												<a href="<?php echo base_url().'detail_product/'.$pdk->id ?>" class="btn btn-sm btn-success" >Detail</a>
 												
 											</div>
 										</div>
@@ -58,13 +58,12 @@
                 </div>
             </div>
         </section>
-
         <footer class="footer text-faded text-center py-5">
 			<div class="container"><p class="m-0 small">Copyright &copy; Roetin Coffee 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="<?php echo base_url()?>js/scripts.js"></script>
     </body>
 </html>

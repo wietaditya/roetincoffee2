@@ -60,5 +60,6 @@ $route['hapus_keranjang'] = 'cafe/hapus_keranjang';
 $route['tambah_ke_keranjang/(:num)'] = 'cafe/tambah_ke_keranjang/$1';
 $route['pembayaran'] = 'cafe/pembayaran';
 $route['proses_pesanan'] = 'cafe/proses_pesanan';
+$route['detail_product/(:num)'] = 'cafe/detail_product/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

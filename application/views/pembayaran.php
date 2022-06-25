@@ -56,7 +56,7 @@
 										</div>
 										<div class="form-group m-2">
 											<label for="alamat" class="text-start">Alamat Lengkap</label>
-											<textarea type="text" id="alamat" name="nama" class="form-control" placeholder="Alamat Lengkap Anda"></textarea>
+											<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat Lengkap Anda"></textarea>
 										</div>
 										<div class="form-group m-2">
 											<label for="no_telp" class="text-start">No. Telepon</label>
