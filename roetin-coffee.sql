@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2022 at 05:17 AM
+-- Generation Time: Jun 25, 2022 at 07:32 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -24,36 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_produk`
+-- Table structure for table `tb_user`
 --
 
-CREATE TABLE `tb_produk` (
+CREATE TABLE `tb_user` (
   `id` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `keterangan` varchar(255) NOT NULL,
-  `kategori` varchar(255) NOT NULL,
-  `stok` int(11) NOT NULL,
-  `gambar` varchar(255) NOT NULL,
-  `harga` int(11) NOT NULL
+  `nama` varchar(100) NOT NULL,
+  `no_telp` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role_id` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tb_produk`
+-- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_produk` (`id`, `nama`, `keterangan`, `kategori`, `stok`, `gambar`, `harga`) VALUES
-(1, 'Kopi satu', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n', 'kopi', 10, 'kopi_01.jpg', 99000),
-(2, 'Kopi dua', 'kopi dua ini enak banget', 'kopi', 12, 'kopi_01.jpg', 75000),
-(3, 'Kopi tiga', 'kopi tiga ini enak banget', 'kopi', 11, 'kopi_01.jpg', 60000);
+INSERT INTO `tb_user` (`id`, `nama`, `no_telp`, `password`, `role_id`) VALUES
+(1, 'admin', '085712415675', 'admin123', 1),
+(2, 'Budi', '085712341234', 'budi123', 2),
+(4, 'awd', 'awd', 'awd', 2),
+(5, 'Kunai', '0090', '111', 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tb_produk`
+-- Indexes for table `tb_user`
 --
-ALTER TABLE `tb_produk`
+ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -61,10 +60,10 @@ ALTER TABLE `tb_produk`
 --
 
 --
--- AUTO_INCREMENT for table `tb_produk`
+-- AUTO_INCREMENT for table `tb_user`
 --
-ALTER TABLE `tb_produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `tb_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
