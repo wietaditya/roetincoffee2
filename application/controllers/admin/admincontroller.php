@@ -57,7 +57,8 @@ class AdminController extends CI_Controller {
 
 	public function edit($id) {
 		$where = array('id' => $id);
-		$data['produk'] = $this->model_produk->edit_produk($where, 'tb_produk')->result();
+		$data['produk'] = $this->model_produk->edit_produk(
+			$where, 'tb_produk')->result();
 		$this->load->view('admin/edit_produk', $data);
 	}
 
@@ -98,8 +99,10 @@ class AdminController extends CI_Controller {
 	}
 
 	public function invoice_detail($id_invoice) {
-		$data['invoice'] = $this->model_invoice->detail_invoice($id_invoice);
-		$data['pesanan'] = $this->model_invoice->detail_pesanan($id_invoice);
+		$data['invoice'] = $this->model_invoice
+								->detail_invoice($id_invoice);
+		$data['pesanan'] = $this->model_invoice
+								->detail_pesanan($id_invoice);
 		$this->load->view('admin/detail_invoice', $data);
 
 	}

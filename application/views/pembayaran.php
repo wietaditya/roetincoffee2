@@ -63,7 +63,7 @@
 											<input type="text" id="no_telp" name="no_telp" class="form-control" placeholder="Nomor Telepon Anda">
 										</div>
 										<div class="form-group m-2">
-											<label for="kurir" class="text-start">No. Telepon</label>
+											<label for="kurir" class="text-start">Kurir</label>
 											<select name="kurir" id="kurir" class="form-control">
 												<option value="lion">Lion Express (Gratis Ongkir)</option>
 												<option value="gojek">Gojek</option>
