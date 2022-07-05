@@ -5,10 +5,12 @@ class Model_invoice extends CI_Model {
 		date_default_timezone_set('Asia/Jakarta');
 		$nama	= $this->input->post('nama');
 		$alamat	= $this->input->post('alamat');
+		$username = $this->session->userdata('username');
 
 		$invoice = array (
 			'nama'			=> $nama,
 			'alamat'		=> $alamat,
+			'username'		=> $username,
 			'tgl_pesan'		=> date('Y-m-d H:i:s'),
 			'batas_bayar'	=> date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d') + 1, date('Y')))
 		);

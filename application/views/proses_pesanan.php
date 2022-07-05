@@ -30,9 +30,19 @@
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
                         <div class="bg-faded rounded p-2">
-						<div class="alert alert-success text-center" role="alert">
-							Selamat pesanan Anda telah berhasil diproses
-						</div>
+							<div class="alert alert-success text-center" role="alert">
+								Silahkan melakukan transfer untuk melanjutlan pemesanan.
+								<br>
+								Total yang harus dibayar sebesar <strong>Rp <?= number_format($total,0,',','.') ?></strong>;
+								<br>
+								<img src="assets/img/qris.jpeg" alt="nomor-rekening-qris" width="300px" class="img mt-2">
+								<br>
+								<h6 class="mt-4">Upload bukti transfer</h6>
+								<?= form_open_multipart(base_url().'upload_bukti_pembayaran/'.$id_invoice); ?>
+									<input type="file" name="bukti_pembayaran" class="form-control">
+									<button type="submit" class="btn btn-primary mt-2">upload</button>
+								<?= form_close(); ?>
+							</div>
                         </div>
                     </div>
                 </div>

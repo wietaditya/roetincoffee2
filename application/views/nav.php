@@ -1,3 +1,4 @@
+<?php $no_telp = $this->session->userdata('no_telp'); ?>
 <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
     <div class="container">
         <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="<?= base_url() ?>home">Start Bootstrap</a>
@@ -26,6 +27,7 @@
 						<i class="fa-solid fa-cart-shopping"></i>&nbsp <?php echo $items; ?>&nbsp items
 					</a>
 				</li>
+				<li class="nav-item px-lg-2"><a class="nav-link text-uppercase" href="<?= base_url() ?>daftar_pesanan?>">Pesanan</a></li>
 				<li class="nav-item px-lg-2">
 					<li class="nav-item dropdown">
 						<a class="nav-link text-uppercase dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
