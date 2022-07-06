@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2022 at 07:33 AM
+-- Generation Time: Jul 06, 2022 at 06:20 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -32,21 +32,11 @@ CREATE TABLE `tb_invoice` (
   `nama` varchar(255) NOT NULL,
   `alamat` text NOT NULL,
   `tgl_pesan` datetime NOT NULL,
-  `batas_bayar` datetime NOT NULL
+  `batas_bayar` datetime NOT NULL,
+  `status` int(1) NOT NULL DEFAULT 0,
+  `username` varchar(15) NOT NULL,
+  `bukti_pembayaran` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_invoice`
---
-
-INSERT INTO `tb_invoice` (`id`, `nama`, `alamat`, `tgl_pesan`, `batas_bayar`) VALUES
-(1, 'Wiwiet', 'ashjdgjkashd', '2022-06-24 12:56:20', '2022-06-25 12:56:20'),
-(2, 'Budi', 'awdawdawd', '2022-06-24 13:00:18', '2022-06-25 13:00:18'),
-(3, 'Alan', 'awd', '2022-06-24 15:38:45', '2022-06-25 15:38:45'),
-(4, 'Dody', 'awd', '2022-06-24 15:42:03', '2022-06-25 15:42:03'),
-(5, 'xdgv', 'sdfg', '2022-06-25 09:19:05', '2022-06-26 09:19:05'),
-(6, 'xdgv', 'sdfg', '2022-06-25 09:25:28', '2022-06-26 09:25:28'),
-(7, 'Kunai', 'qqweqweqweqweqweqweqw', '2022-06-25 12:24:41', '2022-06-26 12:24:41');
 
 -- --------------------------------------------------------
 
@@ -69,16 +59,7 @@ CREATE TABLE `tb_pesanan` (
 --
 
 INSERT INTO `tb_pesanan` (`id`, `id_invoice`, `id_pdk`, `nama_pdk`, `jumlah`, `harga`, `pilihan`) VALUES
-(1, 1, 2, 'Kopi dua', 1, 75000, ''),
-(2, 2, 1, 'Kopi satu', 1, 99000, ''),
-(3, 2, 3, 'Kopi tiga', 1, 60000, ''),
-(4, 3, 1, 'Kopi satu', 1, 99000, ''),
-(5, 3, 3, 'Kopi tiga', 1, 60000, ''),
-(6, 4, 1, 'Kopi satu', 1, 99000, ''),
-(7, 4, 3, 'Kopi tiga', 2, 60000, ''),
-(9, 6, 1, 'Merch 01', 1, 99000, ''),
-(10, 7, 1, 'Merch 01', 1, 99000, ''),
-(11, 7, 3, 'Kopi tiga', 1, 60000, '');
+(40, 40, 11, 'Flores Bajawa 250g Kopi Arabica', 1, 200000, '');
 
 -- --------------------------------------------------------
 
@@ -101,9 +82,9 @@ CREATE TABLE `tb_produk` (
 --
 
 INSERT INTO `tb_produk` (`id`, `nama`, `keterangan`, `kategori`, `stok`, `gambar`, `harga`) VALUES
-(1, 'Merch 01', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n', 'merch', 10, 'kopi_01.jpg', 99000),
-(2, 'Kopi dua', 'kopi dua ini enak banget', 'kopi', 12, 'kopi_01.jpg', 75000),
-(3, 'Kopi tiga', 'kopi tiga ini enak banget', 'kopi', 11, 'kopi_01.jpg', 60000);
+(10, 'Mandheling 200g Kopi Arabica', 'Keasaman medium, rasa floral, manis', 'kopi', 15, 'mandheling.jpg', 175000),
+(11, 'Flores Bajawa 250g Kopi Arabica', 'Manis, asam, karamel, cokelat, helzanut.', 'kopi', 20, 'bajawa.jpg', 200000),
+(12, 'Sindikalang 150g Arabica', 'Asam, manis, kekentalan medium', 'kopi', 15, 'sindikalang.jpg', 170000);
 
 -- --------------------------------------------------------
 
@@ -116,18 +97,18 @@ CREATE TABLE `tb_user` (
   `nama` varchar(100) NOT NULL,
   `no_telp` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role_id` tinyint(1) NOT NULL
+  `role_id` tinyint(1) NOT NULL,
+  `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id`, `nama`, `no_telp`, `password`, `role_id`) VALUES
-(1, 'admin', '085712415675', 'admin123', 1),
-(2, 'Budi', '085712341234', 'budi123', 2),
-(4, 'awd', 'awd', 'awd', 2),
-(5, 'Kunai', '0090', '111', 2);
+INSERT INTO `tb_user` (`id`, `nama`, `no_telp`, `password`, `role_id`, `username`) VALUES
+(1, 'admin', '085712415675', 'admin123', 1, 'admin'),
+(2, 'Budi', '085712341234', 'budi123', 2, 'budi'),
+(5, 'Kunai', '0090', '111', 2, 'kun');
 
 --
 -- Indexes for dumped tables
@@ -165,19 +146,19 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `tb_pesanan`
 --
 ALTER TABLE `tb_pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `tb_produk`
 --
 ALTER TABLE `tb_produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
