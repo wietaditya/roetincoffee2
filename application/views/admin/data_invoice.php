@@ -132,19 +132,35 @@
 								<th>Alamat Pengiriman</th>
 								<th>Tanggal Pemesanan</th>
 								<th>Batas Pembayaran</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 
 							<?php
 							$no = 1;
+							if ($invoices != null)
 							foreach($invoices as $inv) : ?>
-
+							<?php
+								$sts = $inv->status;
+								if ($sts == 0) {
+									$status = "Menunggu pembayaran";
+								} else if ($sts == 1) {
+									$status = "Menunggu Konfirmasi pembayaran";
+								} else if ($sts == 2) {
+									$status = "Pesanan diproses";
+								} else if ($sts == 3) {
+									$status = "Pesanan dibatalkan";
+								} 
+							?>
 							<tr>
 								<td><?= $inv->id ?></td>
 								<td><?= $inv->nama ?></td>
 								<td><?= $inv->alamat ?></td>
 								<td><?= $inv->tgl_pesan ?></td>
 								<td><?= $inv->batas_bayar ?></td>
+								<td class="text-center">
+									<?= $status ?>
+								</td>
 								<td>
 									<a href="<?php echo base_url().'admin/admincontroller/invoice_detail/'. $inv->id?>" class="btn btn-sm btn-primary">Detail</a>
 								</td>

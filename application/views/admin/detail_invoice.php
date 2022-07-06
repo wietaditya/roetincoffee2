@@ -122,6 +122,11 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-start justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Detail Invoice <span class="badge rounded-pill bg-success">No. Invoice <?php echo $invoice->id  ?></span></h1>
+						<?php if($invoice->status == '1') { ?>
+							<a href="<?php echo base_url().'admin/admincontroller/konfirmasi_pembayaran/'. $invoice->id?>" class="btn btn-sm btn-primary">Konfirmasi</a>
+								<?php } else { ?>
+								
+						<?php } ?>
                     </div>
 
 					<table class="table table-bordered table-hover table-striped">
@@ -131,6 +136,7 @@
 							<th>Jumlah Pesanan</th>
 							<th>Harga Satuan</th>
 							<th>Subtotal</th>
+							<th>Bukti Pembayaran</th>
 						</tr>
 
 						<?php
@@ -147,12 +153,19 @@
 							<td><?= $psn->jumlah ?></td>
 							<td align="right">Rp <?= number_format($psn->harga,0,',','.') ?></td>
 							<td align="right">Rp <?= number_format($subtotal,0,',','.') ?></td>
+							<td>
+								<?php if($invoice->status == '1' || $invoice->status == '2') { ?>
+								<img src="<?= base_url('assets/bukti_tf/'.$invoice->bukti_pembayaran)?>" alt="bukti_tf" width=170">
+								<?php } else { ?>
+								-
+								<?php } ?>
+							</td>
 						</tr>
 
 						<?php endforeach; ?>
 
 						<tr>
-							<td colspan="4" align="right">Grand Total</td>
+							<td colspan="5" align="right">Grand Total</td>
 							<td align="right">Rp <?= number_format($total,0,',','.') ?></td>
 						</tr>
 

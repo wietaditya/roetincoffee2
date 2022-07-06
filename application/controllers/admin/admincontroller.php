@@ -106,5 +106,20 @@ class AdminController extends CI_Controller {
 		$this->load->view('admin/detail_invoice', $data);
 
 	}
+
+	public function konfirmasi_pembayaran($id) {
+
+		$data = array(
+			'status'	=> 2
+		);
+
+		$where = array(
+			'id'	=> $id
+		);
+
+		$this->db->where($where);
+		$this->db->update('tb_invoice', $data);
+		redirect('admin/admincontroller/invoices');
+	}
 	
 }
