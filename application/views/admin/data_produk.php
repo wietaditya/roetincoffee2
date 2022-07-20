@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('admin/dashboard') ?>">
                 <div class="sidebar-brand-icon">
                 <i class="fas fa-store"></i>
                 </div>
@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('admin/admincontroller/dashboard') ?>">
+                <a class="nav-link" href="<?php echo base_url('admin/dashboard') ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -53,16 +53,28 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
-			<a class="nav-link" href="<?php echo base_url('admin/admincontroller/data_produk') ?>">
+			<a class="nav-link" href="<?php echo base_url('admin/data_produk') ?>">
                     <i class="fas fa-fw fa-database"></i>
                     <span>Data Barang</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-			<a class="nav-link" href="<?php echo base_url('admin/admincontroller/invoices') ?>">
+			<a class="nav-link" href="<?php echo base_url('admin/invoices') ?>">
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Invoices</span></a>
+            </li>
+
+			<li class="nav-item">
+			<a class="nav-link" href="<?php echo base_url('admin/data_member') ?>">
+			<i class="fas fa-users"></i>
+                    <span>Data Member</span></a>
+            </li>
+
+			<li class="nav-item">
+			<a class="nav-link" href="<?php echo base_url('admin/data_kategori') ?>">
+			<i class="fas fa-layer-group"></i>
+                    <span>Data Kategori</span></a>
             </li>
 
             <!-- Divider -->
@@ -152,8 +164,8 @@
 								<td><?= $pdk->harga ?></td>
 								<td><?= $pdk->stok ?></td>
 								<td>
-									<a href="<?php echo base_url().'admin/admincontroller/edit/'. $pdk->id?>" class="btn btn-sm btn-success">Edit</a>
-									<a href="<?php echo base_url().'admin/admincontroller/delete/'. $pdk->id?>" class="btn btn-sm btn-danger">Delete</a>
+									<a href="<?php echo base_url().'admin/edit_produk/'. $pdk->id?>" class="btn btn-sm btn-success">Edit</a>
+									<a href="<?php echo base_url().'admin/delete_produk/'. $pdk->id?>" class="btn btn-sm btn-danger">Delete</a>
 								</td>
 							</tr>
 							<?php endforeach; ?>
@@ -220,7 +232,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="<?= base_url().'admin/admincontroller/add_produk' ?>" method="post" enctype="multipart/form-data">
+				<form action="<?= base_url().'admin/add_produk' ?>" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="nama">Nama Produk</label>
 						<input type="text" name="nama" class="form-control">	

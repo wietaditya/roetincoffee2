@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends CI_Controller {
+class Admin extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -23,6 +23,16 @@ class AdminController extends CI_Controller {
 		$this->load->view('admin/data_produk', $data);
 	}
 
+	public function data_member() {
+		$data['member'] = $this->model_member->tampil_data()->result();
+		$this->load->view('admin/data_member', $data);
+	}
+
+	public function data_kategori() {
+		$data['kategori'] = $this->model_kategori->tampil_data()->result();
+		$this->load->view('admin/data_kategori', $data);
+	}
+
 	public function add_produk() {
 		$nama = $this->input->post('nama');
 		$keterangan = $this->input->post('keterangan');
@@ -31,8 +41,8 @@ class AdminController extends CI_Controller {
 		$stok = $this->input->post('stok');
 		$gambar = $_FILES['gambar']['name'];
 		if ($gambar == '') {} else {
-			$config['upload_path'] = './uploads';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';
+			$config['upload_path']		= './assets/images';
+			$config['allowed_types']	= 'jpg|png|jpeg';
 
 			$this->load->library('upload', $config);
 			if (!$this->upload->do_upload('gambar')) {
@@ -52,14 +62,34 @@ class AdminController extends CI_Controller {
 		);
 
 		$this->model_produk->add_produk($data, 'tb_produk');
-		redirect('admin/admincontroller/data_produk');
+		redirect('admin/data_produk');
 	}
 
-	public function edit($id) {
+	public function add_kategori() {
+		$nama = $this->input->post('nama');
+		$desc = $this->input->post('desc');
+
+		$data = array(
+			'nama' 			=> $nama,
+			'desc' 			=> $desc
+		);
+
+		$this->model_kategori->add_kategori($data, 'tb_kategori');
+		redirect('admin/data_kategori');
+	}
+
+	public function edit_produk($id) {
 		$where = array('id' => $id);
 		$data['produk'] = $this->model_produk->edit_produk(
 			$where, 'tb_produk')->result();
 		$this->load->view('admin/edit_produk', $data);
+	}
+
+	public function edit_kategori($id) {
+		$where = array('id' => $id);
+		$data['kategori'] = $this->model_kategori->edit_kategori(
+			$where, 'tb_kategori')->result();
+		$this->load->view('admin/edit_kategori', $data);
 	}
 
 	public function update() {
@@ -83,13 +113,43 @@ class AdminController extends CI_Controller {
 		);
 
 		$this->model_produk->update_data($where, $data, 'tb_produk');
-		redirect('admin/admincontroller/data_produk');
+		redirect('admin/data_produk');
 	}
 
-	public function delete($id) {
+	public function update_kategori() {
+		$id				= $this->input->post('id');
+		$nama			= $this->input->post('nama');
+		$desc		= $this->input->post('desc');
+		
+		$data = array(
+			'nama' => $nama,
+			'desc' => $desc
+		);
+
+		$where = array(
+			'id' => $id
+		);
+
+		$this->model_kategori->update_data($where, $data, 'tb_kategori');
+		redirect('admin/data_kategori');
+	}
+
+	public function delete_produk($id) {
 		$where = array('id' => $id);
 		$this->model_produk->delete_data($where, 'tb_produk');
-		redirect('admin/admincontroller/data_produk');
+		redirect('admin/data_produk');
+	}
+
+	public function delete_kategori($id) {
+		$where = array('id' => $id);
+		$this->model_kategori->delete_data($where, 'tb_kategori');
+		redirect('admin/data_kategori');
+	}
+
+	public function delete_member($id) {
+		$where = array('id' => $id);
+		$this->model_kategori->delete_data($where, 'tb_user');
+		redirect('admin/data_member');
 	}
 
 	//Invoice
@@ -119,7 +179,7 @@ class AdminController extends CI_Controller {
 
 		$this->db->where($where);
 		$this->db->update('tb_invoice', $data);
-		redirect('admin/admincontroller/invoices');
+		redirect('admin/invoices');
 	}
 	
 }

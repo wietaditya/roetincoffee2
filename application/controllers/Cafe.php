@@ -65,7 +65,8 @@ class Cafe extends CI_Controller {
 	public function proses_pesanan() {
 		$is_processed = $this->model_invoice->index();
 		if ($is_processed) {
-			$data['total'] = $this->cart->total();
+			$total = $this->cart->total();
+			$data['total'] = $total;
 			$this->cart->destroy();
 			$this->load->view('nav');
 			$this->load->view('pesan_berhasil_memesan', $data);
@@ -78,6 +79,10 @@ class Cafe extends CI_Controller {
 			$username = $this->session->userdata('username');
 			$pesanan = $this->model_pesanan->tampil_pesanan($username)->result();
 			$total = 0;
+			foreach ($pesanan as $psn) {
+				$ongkir = $psn->ongkir;
+			}
+			$total += $ongkir;
 			$id_invoice = '';
 			foreach ($pesanan as $psn) {
 				$total += $psn->harga;
@@ -88,6 +93,23 @@ class Cafe extends CI_Controller {
 			$this->cart->destroy();
 			$this->load->view('nav');
 			$this->load->view('proses_pesanan', $data);
+	}
+
+	public function batalkan_pesanan($id) {
+		$data = array(
+			'status'	=> 3
+		);
+
+		$where = array(
+			'id'	=> $id
+		);
+
+		$this->db->where($where);
+		$this->db->update('tb_invoice', $data);
+
+		$this->db->where('id_invoice',$where['id']);
+		$this->db->delete('tb_pesanan');
+		redirect();
 	}
 
 	public function detail_product($id) {
@@ -137,5 +159,6 @@ class Cafe extends CI_Controller {
 			$this->load->view('pembayaran_berhasil');
 		}
 	}
+	
 
 }

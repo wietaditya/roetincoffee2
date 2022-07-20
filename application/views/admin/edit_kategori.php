@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Roetin Coffee - Detail Invoice</title>
+    <title>Roetin Coffee - Edit Kategori</title>
 
     <!-- Custom fonts for this template-->
 	<link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
@@ -52,14 +52,14 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item active">
 			<a class="nav-link" href="<?php echo base_url('admin/data_produk') ?>">
                     <i class="fas fa-fw fa-database"></i>
                     <span>Data Barang</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
 			<a class="nav-link" href="<?php echo base_url('admin/invoices') ?>">
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Invoices</span></a>
@@ -105,8 +105,8 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                       <!-- Nav Item - User Information -->
-					   <li class="nav-item dropdown no-arrow">
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
@@ -133,55 +133,29 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-start justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Detail Invoice <span class="badge rounded-pill bg-success">No. Invoice <?php echo $invoice->id  ?></span></h1>
-						<?php if($invoice->status == '1') { ?>
-							<a href="<?php echo base_url().'admin/konfirmasi_pembayaran/'. $invoice->id?>" class="btn btn-sm btn-primary">Konfirmasi</a>
-								<?php } else { ?>
-								
-						<?php } ?>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data Kategori</h1>
                     </div>
 
-					<table class="table table-bordered table-hover table-striped">
-						<tr>
-							<th>Id Produk</th>
-							<th>Nama Produk</th>
-							<th>Jumlah Pesanan</th>
-							<th>Harga Satuan</th>
-							<th>Subtotal</th>
-							<th>Bukti Pembayaran</th>
-						</tr>
+					<div class="row ml-1">
+						<?php foreach($kategori as $kat) : ?>
+							
+							<form method="post" action="<?php echo base_url().'admin/update_kategori' ?>">
+							<input type="hidden" name="id" value="<?php echo $kat->id ?>">
+							<div class="form-group">
+								<label for="nama">Nama Kategori</label>
+								<input type="text" name="nama" class="form-control" value="<?php echo $kat->nama ?>">	
+							</div>
+							<div class="form-group">
+								<label for="desc">Keterangan</label>
+								<input type="text" name="desc" class="form-control" value="<?php echo $kat->desc ?>">	
+							</div>
 
-						<?php
-						$total = 0;
-						foreach ($pesanan as $psn) :
-							$subtotal = $psn->jumlah * $psn->harga;
-							$total += $subtotal;
-						
-						?>
+							<button type="submit" class="btn btn-sm btn-primary">Simpan</button>
 
-						<tr>
-							<td><?= $psn->id_pdk ?></td>
-							<td><?= $psn->nama_pdk ?></td>
-							<td><?= $psn->jumlah ?></td>
-							<td align="right">Rp <?= number_format($psn->harga,0,',','.') ?></td>
-							<td align="right">Rp <?= number_format($subtotal,0,',','.') ?></td>
-							<td>
-								<?php if($invoice->status == '1' || $invoice->status == '2') { ?>
-								<img src="<?= base_url('assets/bukti_tf/'.$invoice->bukti_pembayaran)?>" alt="bukti_tf" width=170">
-								<?php } else { ?>
-								-
-								<?php } ?>
-							</td>
-						</tr>
+							</form>
 
 						<?php endforeach; ?>
-
-						<tr>
-							<td colspan="5" align="right">Grand Total</td>
-							<td align="right">Rp <?= number_format($total,0,',','.') ?></td>
-						</tr>
-
-					</table>
+					</div>
 
 				</div>
                 <!-- /.container-fluid -->
@@ -229,52 +203,9 @@
             </div>
         </div>
     </div>
-	
+
 	<!-- Modal -->
-	<div class="modal fade" id="tambah_produk" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body">
-			<form action="<?= base_url().'admin/add_produk' ?>" method="post" enctype="multipart/form-data">
-				<div class="form-group">
-					<label for="nama">Nama Produk</label>
-					<input type="text" name="nama" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="keterangan">Keterangan</label>
-					<input type="text" name="keterangan" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="kategori">Kategori</label>
-					<input type="text" name="kategori" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="harga">Harga</label>
-					<input type="text" name="harga" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="stok">Stok</label>
-					<input type="text" name="stok" class="form-control">	
-				</div>
-				<div class="form-group">
-					<label for="gambar">Gambar</label><br>
-					<input type="file" name="gambar">	
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Simpan Produk</button>
-			</div>
-		</form>
-		</div>
-	</div>
-	</div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url('assets/jquery/jquery.min.js') ?>"></script>

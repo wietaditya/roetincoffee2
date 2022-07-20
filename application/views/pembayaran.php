@@ -69,7 +69,19 @@
 												<option value="gojek">Gojek</option>
 											</select>
 										</div>
-
+										<div class="form-group m-2" id="kecamatan_form">
+											<label for="kecamatan" class="text-start">Kecamatan</label>
+											<select name="kecamatan" id="kecamatan" class="form-control">
+												<option value="" selected disabled>-Pilih Kecamatan-</option>
+												<option value="10000">A</option>
+												<option value="15000">B</option>
+												<option value="20000">C</option>
+											</select>
+										</div>
+										<div class="form-group m-2" id="titik_form">
+											<label for="titik_gmaps" class="text-start">Link titik google maps</label>
+											<input type="text" id="titik_gmaps" name="titik_gmaps" class="form-control" placeholder="Link titik google maps">
+										</div>
 										<button type="submit" class="btn btn-sm btn-primary m-2">Pesan</button>
 									</form>
 									<?php
@@ -93,8 +105,27 @@
 			<div class="container"><p class="m-0 small">Copyright &copy; Roetin Coffee 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
+		<script src="<?php echo base_url('assets/jquery/jquery.min.js') ?>"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('#kecamatan_form').hide();
+				$('#titik_form').hide();
+			});
+
+			$("#kurir").on("change", function() {
+				var kurir = $('#kurir').val();
+				if (kurir == 'gojek') {
+					$('#kecamatan_form').show();
+					$('#titik_form').show();
+				} else {
+					$('#kecamatan_form').hide();
+					$('#titik_form').hide();
+				}
+			});
+			
+		</script>
     </body>
 </html>

@@ -41,6 +41,14 @@
 								<tbody class="text-center">
 								<?php
 									$total = 0;
+									$id = '';
+									if($pesanan) {
+									foreach ($pesanan as $psn) : 
+										$ongkir = $psn->ongkir;
+										$id = $psn->id_invoice;
+									endforeach;
+									$total += $ongkir;
+									}
 									foreach ($pesanan as $psn) : 
 									$total += $psn->harga;
 									?>	
@@ -54,7 +62,7 @@
 							<h4 class="mt-4">Total yang harus dibayarkan</h4>
 							<h4><strong>Rp <?= number_format($total,0,',','.') ?></strong></h4>
 							<div align="right">
-								<a href="<?php echo base_url().'proses_pesanan_bayar' ?>" class="btn btn-sm btn-danger">Batalkan Pesanan</a>
+								<a href="<?php echo base_url().'batalkan_pesanan/'.$id ?>" class="btn btn-sm btn-danger">Batalkan Pesanan</a>
 								<a href="<?php echo base_url().'proses_pesanan_bayar' ?>" class="btn btn-sm btn-success">Bayar</a>
 							</div>
                         </div>

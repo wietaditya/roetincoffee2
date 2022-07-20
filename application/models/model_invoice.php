@@ -3,14 +3,27 @@
 class Model_invoice extends CI_Model {
 	public function index() {
 		date_default_timezone_set('Asia/Jakarta');
-		$nama	= $this->input->post('nama');
-		$alamat	= $this->input->post('alamat');
+		$nama				= $this->input->post('nama');
+		$alamat				= $this->input->post('alamat');
+		$kurir				= $this->input->post('kurir');
+		$kecamatan			= $this->input->post('kecamatan');
+		$link_alamat_gmaps	= $this->input->post('titik_gmaps');
 		$username = $this->session->userdata('username');
+		
+		if ($kurir == 'gojek') {
+			$link_alamat_gmaps = $link_alamat_gmaps;
+			$ongkir = $kecamatan;
+		} else {
+			$link_alamat_gmaps = "-";
+			$ongkir = 0;
+		}
 
 		$invoice = array (
 			'nama'			=> $nama,
 			'alamat'		=> $alamat,
 			'username'		=> $username,
+			'ongkir'		=> $ongkir,
+			'link_alamat'	=> $link_alamat_gmaps,
 			'tgl_pesan'		=> date('Y-m-d H:i:s'),
 			'batas_bayar'	=> date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d') + 1, date('Y')))
 		);

@@ -34,7 +34,7 @@
 								<?php foreach ($produk as $pdk) : ?>
 								<div class="row">
 									<div class="card m-4 p-3" style="width: 18rem;">
-										<img src="<?php echo base_url()?>assets/img/<?= $pdk->gambar ?>" class="card-img-top" alt="product-04">
+									<img src="../assets/images/<?= $pdk->gambar ?>" class="card-img-top" alt="product-04">
 										<div class="card-body">
 											<h5 class="card-title"><?= $pdk->nama ?></h5>
 											<small class="card-text"><?= $pdk->keterangan ?></small>
