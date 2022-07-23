@@ -73,9 +73,24 @@
 											<label for="kecamatan" class="text-start">Kecamatan</label>
 											<select name="kecamatan" id="kecamatan" class="form-control">
 												<option value="" selected disabled>-Pilih Kecamatan-</option>
-												<option value="10000">A</option>
-												<option value="15000">B</option>
-												<option value="20000">C</option>
+												<option value="10000">Gedangsari</option>
+												<option value="10000">Girisubo</option>
+												<option value="10000">Karangmojo</option>
+												<option value="10000">Ngawen</option>
+												<option value="10000">Nglipar</option>
+												<option value="10000">Paliyan</option>
+												<option value="10000">Panggang</option>
+												<option value="10000">Patuk</option>
+												<option value="10000">Playen</option>
+												<option value="10000">Purwosari</option>
+												<option value="10000">Rongkop</option>
+												<option value="10000">Saptosari</option>
+												<option value="10000">Semanu</option>
+												<option value="10000">Semin</option>
+												<option value="10000">Tanjungsari</option>
+												<option value="10000">Tanjungsari</option>
+												<option value="10000">Tepus</option>
+												<option value="10000">Wonosari</option>
 											</select>
 										</div>
 										<div class="form-group m-2" id="titik_form">
