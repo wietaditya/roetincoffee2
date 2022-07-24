@@ -105,6 +105,16 @@
                         <input id="fullName" type="text" name="nama" placeholder="Nama Lengkap" class="form-control bg-white border-left-0 border-md">
                     </div>
 
+                    <!-- Username -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="userName" type="text" name="username" placeholder="Username" class="form-control bg-white border-left-0 border-md">
+                    </div>
+
                     <!-- Phone Number -->
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
@@ -170,11 +180,12 @@ $(function () {
 
 function validate() {
 	var nama = $('#fullName').val();
+	var username = $('#userName').val();
 	var no_telp = $('#phoneNumber').val();
 	var password1 = $('#password').val();
 	var password2 = $('#passwordConfirmation').val();
 
-	if (nama == '' || no_telp == '' || password1 == '' || password2 == '') {
+	if (nama == '' || username == '' || no_telp == '' || password1 == '' || password2 == '') {
 		alert("Semua form wajib diisi!");
 	}
 };

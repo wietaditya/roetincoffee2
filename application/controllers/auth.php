@@ -49,6 +49,7 @@ class Auth extends CI_Controller {
 			$data = array(
 				'id'		=> '',
 				'nama'		=> $this->input->post('nama'),
+				'username'	=> $this->input->post('username'),
 				'no_telp'	=> $this->input->post('no_telp'),
 				'password'	=> $this->input->post('password'),
 				'role_id'	=> 2
